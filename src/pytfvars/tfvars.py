@@ -42,6 +42,12 @@ def __convert_str_v(contents: str, str_value: str, indent_no: int):
     return contents
 
 
+def __convert_int(contents: str, int_key: str, int_value: int, indent_no: int):
+    indent_str = get_indent_string(indent_no)
+    contents = "\n{}\n{}{} = {}".format(contents, indent_str, int_key, int_value)
+    return contents
+
+
 def __convert_bool(contents: str, bool_key: str, bool_value: bool, indent_no: int) :
     indent_str = get_indent_string(indent_no)
     contents = "\n{}\n{}{} = {}".format(contents, indent_str, bool_key, "true" if bool_value else "false")
@@ -77,6 +83,8 @@ def __convert_dict(contents: str, dict_value: dict, indent_no: int) :
             contents = __convert_bool(contents, d_k, d_v, indent_no)
         elif type(d_v) is str:
             contents = __convert_str_kv(contents, d_k, d_v, indent_no)
+        elif type(d_v) is int:
+            contents = __convert_int(contents, d_k, d_v, indent_no)
     return contents
 
 
@@ -104,6 +112,8 @@ def convert(obj: dict):
             contents = __convert_bool(contents, k, v, indent_no)
         elif type(v) is str:
             contents = __convert_str_kv(contents, k, v, indent_no)
+        elif type(v) is int:
+            contents = __convert_int(contents, k, v, indent_no)
 
     contents = __remove_empty_lines(contents)
     return contents

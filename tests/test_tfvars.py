@@ -30,6 +30,18 @@ class DictWithBlocks(unittest.TestCase):
         hcl.loads(result)
 
 
+class DictWithBools(unittest.TestCase):
+    def setup(self):
+        self.values = {
+            "age": 2,
+            "num": 42,
+        }
+
+    def testConvert(self):
+        result = tfvars.convert(self.values)
+        hcl.loads(result)
+
+
 class DictWithListOfBlocks(unittest.TestCase):
     def setUp(self):
         self.values = {}
