@@ -30,7 +30,7 @@ class DictWithBlocks(unittest.TestCase):
         hcl.loads(result)
 
 
-class DictWithBools(unittest.TestCase):
+class DictWithInts(unittest.TestCase):
     def setup(self):
         self.values = {
             "age": 2,
